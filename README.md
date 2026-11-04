@@ -39,7 +39,7 @@ Skizze bis zur fertigen Seite.
 
 ## Technische Umsetzung
 
-- **Semantisches HTML** und Bootstrap-Komponenten (Navigation, Formular, Karten, Footer)
+- **HTML** und Bootstrap-Komponenten (Navigation, Formular, Karten, Footer)
 - **Barrierefreiheit:** Formularfelder sind mit Labels bzw. `aria-label` verknüpft, Bilder haben
   Alternativtexte, jede Seite hat `lang="de"` und eine Meta-Beschreibung
 - **Sicherer Umgang mit Eingaben:** Die Bestätigungsseite fügt die Werte aus der URL als Text ein
