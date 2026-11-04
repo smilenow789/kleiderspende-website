@@ -97,14 +97,21 @@
                             <table class="table table-bordered table-striped">
                                 <tbody>
                                     <script type="text/javascript">
+                                        // Werte als Text einfügen (textContent), nicht als HTML:
+                                        // verhindert Cross-Site-Scripting über die URL-Parameter.
+                                        var tabelle = document.currentScript.parentNode;
                                         for (var eigenschaft in liste.data) {
-                                            document.write("<tr><td><strong>" + eigenschaft + "</strong></td><td>");
-                                            if (Array.isArray(liste.data[eigenschaft])) {
-                                                document.write(liste.data[eigenschaft].join(", "));
-                                            } else {
-                                                document.write(liste.data[eigenschaft]);
-                                            }
-                                            document.write("</td></tr>");
+                                            var zeile = document.createElement("tr");
+                                            var spalteName = document.createElement("td");
+                                            var fett = document.createElement("strong");
+                                            fett.textContent = eigenschaft;
+                                            spalteName.appendChild(fett);
+                                            var spalteWert = document.createElement("td");
+                                            var wert = liste.data[eigenschaft];
+                                            spalteWert.textContent = Array.isArray(wert) ? wert.join(", ") : wert;
+                                            zeile.appendChild(spalteName);
+                                            zeile.appendChild(spalteWert);
+                                            tabelle.appendChild(zeile);
                                         }
                                     </script>
                                     <tr>
@@ -113,9 +120,9 @@
                                         </td>
                                         <td>
                                             <script type="text/javascript">
-                                                var jetzt = new Date();
-                                                document.write(jetzt.toLocaleString());
+                                                document.currentScript.parentNode.textContent = new Date().toLocaleString();
                                             </script>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
